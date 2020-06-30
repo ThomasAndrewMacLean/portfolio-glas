@@ -1,17 +1,13 @@
-import App from 'next/app';
-import React, { createContext } from 'react';
+import React from 'react';
 import '../styles/style.css';
 
-export const TranslationContext = createContext([]);
-export const PictureContext = createContext([]);
-
-function MyApp({ Component, pageProps, translations, pics }) {
+function MyApp({ Component, pageProps }) {
   return (
-    <PictureContext.Provider value={pics}>
-      <TranslationContext.Provider value={translations}>
-        <Component {...pageProps} />
-      </TranslationContext.Provider>{' '}
-    </PictureContext.Provider>
+    // <PictureContext.Provider value={pics}>
+    //   <TranslationContext.Provider value={translations}>
+    <Component {...pageProps} />
+    //   </TranslationContext.Provider>{' '}
+    // </PictureContext.Provider>
   );
 }
 
@@ -20,25 +16,27 @@ function MyApp({ Component, pageProps, translations, pics }) {
 // perform automatic static optimization, causing every page in your app to
 // be server-side rendered.
 //
-MyApp.getInitialProps = async (appContext) => {
-  const url =
-    'https://europe-west1-thomasmaclean.cloudfunctions.net/getDataAirtable';
-  const dataFromAirtableJson = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ airtableApp: process.env.AIRTABLE_APP }),
-  });
-  const dataFromAirtable = await dataFromAirtableJson.json();
-  const appProps = await App.getInitialProps(appContext);
+// MyApp.getInitialProps = async (appContext) => {
+//   console.log('process.env.AIRTABLE_APP ', process.env.AIRTABLE_APP);
+//   const url =
+//     'https://europe-west1-thomasmaclean.cloudfunctions.net/getDataAirtable';
+//   const dataFromAirtableJson = await fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({ airtableApp: process.env.AIRTABLE_APP }),
+//   });
 
-  //console.log(dataFromAirtable);
-  return {
-    ...appProps,
-    ...dataFromAirtable,
-  };
-};
+//   const dataFromAirtable = await dataFromAirtableJson.json();
+//   const appProps = await App.getInitialProps(appContext);
+
+//   //console.log(dataFromAirtable);
+//   return {
+//     ...appProps,
+//     ...dataFromAirtable,
+//   };
+// };
 
 export default MyApp;

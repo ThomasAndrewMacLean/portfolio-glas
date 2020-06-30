@@ -2,6 +2,8 @@
 
 :root {
   --background-dark: #77f;
+  --light-grey: #d3d3d3;
+  --dark-grey: #999;
   --border: 3px solid black;
 }
 * {
@@ -17,7 +19,7 @@
 html,
 body {
   font-family: 'Roboto Slab', sans-serif;
-
+  color: #111;
   width: 100%;
   overflow-x: hidden;
 }
@@ -30,3 +32,6 @@ li {
   padding-bottom: 0.5rem;
 }
 
+p {
+  line-height: 1.7;
+}
