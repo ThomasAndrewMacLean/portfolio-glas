@@ -74,7 +74,7 @@ const NavLink = styled.a`
     display: ${(props) => (props.active ? 'block' : 'none')};
     width: 100%;
     height: 3px;
-    background: var(--dark-grey);
+    background: black;
   }
 `;
 const Footer = styled.footer`
